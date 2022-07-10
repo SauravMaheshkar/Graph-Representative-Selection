@@ -6,7 +6,7 @@ jaxlib==0.3.7
 jraph==0.0.5.dev0
 ml-collections==0.1.1
 mypy==0.961
-numpy==1.21.6
+numpy==1.22.0
 optax==0.1.2
 pre-commit==2.19.0
 pylint==2.14.4
