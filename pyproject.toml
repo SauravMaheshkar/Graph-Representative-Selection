@@ -14,12 +14,23 @@ disable = [
     "too-many-branches",
     "redefined-builtin",
     "dangerous-default-value",
+    "unnecessary-comprehension",
+    "arguments-differ",
+    "attribute-defined-outside-init",
+    "inconsistent-return-statements",
+    "too-many-locals",
 ]
 
 [tool.pylint.format]
 max-line-length = 88
 
 [[tool.mypy.overrides]]
+module=[
+    'src.*',
+    'jraph',
+    'scipy.sparse',
+    'ml_collections',
+]
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]

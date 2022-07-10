@@ -6,7 +6,6 @@
 .mypy_cache/
 
 venv/
-data/
 models/
 notebooks/
 
