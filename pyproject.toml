@@ -19,6 +19,7 @@ disable = [
     "attribute-defined-outside-init",
     "inconsistent-return-statements",
     "too-many-locals",
+    "redefined-outer-name",
 ]
 
 [tool.pylint.format]
@@ -28,6 +29,7 @@ max-line-length = 88
 module=[
     'src.*',
     'jraph',
+    'optax',
     'scipy.sparse',
     'ml_collections',
 ]

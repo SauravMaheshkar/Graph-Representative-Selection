@@ -18,8 +18,8 @@ def get_config() -> ml_collections.ConfigDict:
     config.rsgnn_hidden_dim = 512
 
     # Training Hyperparameters
-    config.gcn_c_epochs = 1000
-    config.rsgnn_epochs = 2000
+    config.gcn_c_epochs = 200
+    config.rsgnn_epochs = 400
     config.num_rep_multiplier = 2
     config.learning_rate = 0.001
     config.dropout_rate = 0.5
@@ -27,6 +27,9 @@ def get_config() -> ml_collections.ConfigDict:
     # Validation Hyperparameters
     config.valid_epochs = 10
     config.num_valid_nodes = 500
+
+    # Logging Hyperparameters
+    config.log_freq = 20
 
     # Integer for PRNG random seed
     config.seed = 42
@@ -51,4 +54,21 @@ def get_rsgnn_flags(
     config.epochs = config.rsgnn_epochs
     config.num_classes = num_classes
     config.num_reps = config.num_rep_multiplier * config.num_classes
+    return config
+
+
+def get_gcn_c_flags(num_classes, config):
+    """
+    Update ConfigDict as per GCN
+
+    :param num_classes: Number of Classes
+    :type num_classes: int
+    :param config: ML Collections ConfigDict
+    :type config: ml_collections.ConfigDict
+    :return: Updated ConfigDict
+    :rtype: ml_collections.ConfigDict
+    """
+    config.hid_dim = config.gcn_c_hidden_dim
+    config.epochs = config.gcn_c_epochs
+    config.num_classes = num_classes
     return config
