@@ -1,6 +1,7 @@
 """Dataset processing utilites"""
 from typing import Set, Tuple
 
+import jax
 import jax.numpy as jnp
 import jraph
 import numpy as np
@@ -105,6 +106,11 @@ def get_graph_edges(adj: np.matrix, features: np.ndarray) -> Tuple[Set, int]:
     edges = symmetrize(edges)
     edges = add_self_loop(edges, features.shape[0])
     return edges, len(edges)
+
+
+def corrupt_graph(graph: jraph.GraphsTuple, rng) -> jraph.GraphsTuple:
+    """Corrupt the graph by randomly permuting the graph nodes"""
+    return graph._replace(nodes=jax.random.permutation(rng, graph.nodes))
 
 
 def create_jraph(

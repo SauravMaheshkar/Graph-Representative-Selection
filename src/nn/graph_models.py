@@ -13,7 +13,7 @@ class GCN(nn.Module):
     """A Flax Module for a Graph Convolutional Network"""
 
     features: Sequence[int]
-    drop_rate: float
+    dropout_rate: float
     activation: str
 
     @nn.compact
@@ -32,8 +32,8 @@ class GCN(nn.Module):
                 # Return the features
                 return graph.nodes
             # Perform dropout
-            dout = nn.Dropout(rate=self.drop_rate)
-            graph = graph._replace(nodes=dout(graph.nodes, deterministic=not train))
+            dropout = nn.Dropout(rate=self.dropout_rate)
+            graph = graph._replace(nodes=dropout(graph.nodes, deterministic=not train))
 
 
 class DGI(nn.Module):
